@@ -1,0 +1,30 @@
+<%-- 
+    Document   : index
+    Created on : 19 de abr de 2022, 22:09:09
+    Author     : amanda
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>About</title>
+    </head>
+    <body>
+        <%@include file="WEB-INF/jspf/header.jspf" %>
+        <%if (session.getAttribute("username") != null) { %>
+        <br>
+        <h3>Sobre mim</h3>
+        <p class="fs-3">Nome: Amanda Santos</p>
+        <p class="fs-3">RA: 1290482022020</p>
+        <p class="fs-3"><a href="https://github.com/4mand4">GitHub</a></p>
+        
+        <%} else {%>
+        <p class= "text-center fs-5" style="color: red">Você não tem permissão para ver esta página</p>
+        <%}%> 
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    </body>
+</html>

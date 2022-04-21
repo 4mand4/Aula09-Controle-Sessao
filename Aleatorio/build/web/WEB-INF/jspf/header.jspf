@@ -1,0 +1,61 @@
+<%@ page pageEncoding="UTF-8" %>
+<%@page import="java.util.Collections"%>
+<%@page import="java.util.ArrayList"%>
+<%
+    if (request.getParameter("logon") != null) {
+        session.setAttribute("username", request.getParameter("username"));
+        //Criei o Array
+        ArrayList numeros = new ArrayList();
+
+        //Criei uma lista de números
+        for (int i = 1; i < 61; i++) {
+            numeros.add(i);
+        }
+        //Embaralhei
+        Collections.shuffle(numeros);
+        
+        session.setAttribute("lista", numeros); 
+        response.sendRedirect(request.getRequestURI()); //Redireciona para a página que está
+    }
+    if (request.getParameter("logoff") != null) {
+        session.removeAttribute("username");
+        response.sendRedirect(request.getRequestURI());
+    }
+    if (session.getAttribute("username") != null) {%>
+
+<nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="index.jsp">AmandaApp</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="index.jsp">Index</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="about.jsp">About Me</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active " href="loteria.jsp">Dicas Para Loteria</a>
+                </li>
+            </ul>
+        </div>
+        <form> 
+            <a class="navbar-brand">Bem vindo, <b><%= session.getAttribute("username")%></b></a> 
+            <button class="btn btn-light" type="submit" name="logoff">Sair</button>
+        </form>
+    </div>
+</nav>
+<%} else {%>
+<nav class="navbar navbar navbar-dark bg-dark">
+    <div class="container-fluid">
+        <form class="d-flex">
+            <a class="navbar-brand">Faça Login: </a>
+            <input class="form-control me-2" type="text" name="username">  
+            <button class="btn btn-light" type="submit" name="logon"> Entrar</button>
+        </form>
+    </div>
+</nav>
+<%}%>
